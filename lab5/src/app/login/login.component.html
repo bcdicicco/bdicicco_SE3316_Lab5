@@ -1,0 +1,22 @@
+<div *ngIf="loginVisible">
+    <h2>Login Page</h2>
+    <p>Username:</p>
+    <input type="text" #username/>
+    <br>
+    <p>Password:</p>
+    <input type="password" #password/>
+    <br><br>
+    <button #loginBtn>Login</button>
+    <button (click)="registerButton()" #registerBtn>Register</button>
+</div>
+
+<div *ngIf="registerVisible">
+    <h2>Register</h2>
+    <p>Enter your email (username):</p>
+    <input type="text" #newUsername/>
+    <br>
+    <p>Enter your password:</p>
+    <input type="password" #newPassword/>
+    <br><br>
+    <button (click)="confirmButton()" #confirmRegBtn>Confirm</button>
+</div>
