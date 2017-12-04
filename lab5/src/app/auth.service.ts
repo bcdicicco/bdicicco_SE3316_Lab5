@@ -19,7 +19,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/register', user, {headers: headers})
+        return this.http.post('https://lab05-bdicicco.c9users.io:8081/users/register', user, {headers: headers})
             .map(res => res.json());
         // return req;
     
@@ -30,7 +30,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/authenticate ', user, {headers: headers})
+        return this.http.post('https://lab05-bdicicco.c9users.io:8081/users/authenticate ', user, {headers: headers})
             .map(res => res.json());
     }
     
@@ -39,7 +39,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.post('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/re-verification-email ', user, {headers: headers})
+        return this.http.post('https://lab05-bdicicco.c9users.io:8081/users/re-verification-email ', user, {headers: headers})
             .map(res => res.json());
     }
     
@@ -63,7 +63,7 @@ export class AuthService {
         headers.append("Access-Control-Allow-Origin", "*");
         headers.append('Content-Type','application/json');
         
-        return this.http.get('https://se3316lab05-mustafadawoud97.c9users.io:8081/users/profile ', {headers: headers})
+        return this.http.get('https://lab05-bdicicco.c9users.io:8081/users/profile ', {headers: headers})
             .map(res => res.json());
     }
     
