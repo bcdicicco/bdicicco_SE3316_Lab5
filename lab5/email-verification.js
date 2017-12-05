@@ -4,7 +4,7 @@ var Token = require('./models/token');
 var User = require('./models/account');
 
 module.exports.verifyUser = function(user) {
-	// create verification token
+
 	var newToken = new Token({
 	    tokenData: uuid(),
 		userId: user._id
@@ -26,7 +26,7 @@ module.exports.verifyUser = function(user) {
 };
 
 module.exports.reVerifyUser = function(idOfUser) {
-	// create verification token
+
 	User.getUserByEmail(idOfUser.email, (err, cuser) =>{
 		if(err){
 			console.log("Stilll erar");
