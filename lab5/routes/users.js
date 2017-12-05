@@ -96,7 +96,7 @@ router.post('/re-verification-email', function(req, res) {
         // usertoken: req.body.usertoken
     };
     eVer.reVerifyUser(newUser);
-	res.send({success: true, msg: "You're verification email has been sent"});
+	res.send({success: true, msg: "Your verification email has been sent"});
 });
 
 //Verification
@@ -111,7 +111,7 @@ router.get('/verify/:verificationToken', function(req, res) {
 			} else {
 				res.json({
 					success: true, 
-					message: 'Youre account is now verified'
+					message: 'Your account is now verified'
 				});
 			}
 		});
