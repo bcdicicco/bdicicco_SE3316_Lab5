@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/database");
 const eVer = require("../email-verification");
 const Collection = require("../models/collection");
+
 //Register
 router.post('/register', (req, res) =>{
     let newUser = new User({
@@ -17,23 +18,23 @@ router.post('/register', (req, res) =>{
     
     // Check if a user with that email is already registered
     User.getUserByEmail(newUser.email, (error, user)=>{
-        if(error){
+        if (error) {
             throw error;
         } 
         
-        if(user){
+        if (user) {
               return res.json({
                     success: false,
                     msg: "User already registered!"
             });
-        } else{
+        } else {
             User.addUser(newUser, (err, user) =>{
                 if(err){
                     res.json({
                         success: false,
                         msg: "Failed to register user"
                     });
-                } else{
+                } else {
                     res.json({
                     success: true,
                     msg: "User Registered"
@@ -52,18 +53,18 @@ router.post('/authenticate', (req, res) =>{
     const password = req.body.password;
     
     User.getUserByEmail(email, (err, user) =>{
-        if(err){
+        if (err) {
             throw err;
         }
-        if(!user){
+        if(!user) {
             return res.json({success: false, msg: "User not found"});
         } 
         
         User.comparePassword(password, user.password, (err, isMatch) =>{
-            if(err){
+            if(err) {
                 throw err;
             }
-            if(isMatch){
+            if(isMatch) {
                 const token = jwt.sign({data: user}, config.secret, {
                     expiresIn: 604800 // 1 week 
                 });
@@ -79,7 +80,7 @@ router.post('/authenticate', (req, res) =>{
                 });
                 
             }
-            else{
+            else {
                 return res.json({success: false, msg: "Wrong password"});
             }
             
@@ -160,7 +161,7 @@ router.get('/collections/usercollections/:email', passport.authenticate('jwt', {
 		email: req.params.email,
 	});
 	console.log('1');
-	// console.log(Collection.getCollectionByEmail(newCollection.email));
+
 		console.log('2');
 
 	Collection.getCollectionByEmail(newCollection.email, (error, cn)=>{
@@ -169,7 +170,6 @@ router.get('/collections/usercollections/:email', passport.authenticate('jwt', {
 			throw error;
 		} 
 
-		// console.log('looking for collections from '+newCollection.email);
 		// // email not found
 		if(cn){
 			res.json({collection: cn});
