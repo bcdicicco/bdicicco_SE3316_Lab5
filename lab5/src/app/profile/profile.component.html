@@ -2,21 +2,24 @@
     <div class="form-control">
         <input type="text" [(ngModel)]="searchPhoto" name= "searchPhoto" class = "form-control" placeholder = "Search">
         <br/>
-        <p>Title: </p>
-        <input type = "text" [(ngModel)]="collectionTitle"  name= "collectionTitle" placeholder="Title" class = "form-control">
-        <br/>
-        <p>Description: </p>
-        <input type = "text" [(ngModel)]="collectionDescrip" name = "collectionDescrip" placeholder="Description" class = "form-control">
-        <br/>
-        <p>Click the checkbox to make your collection public</p>
-        <input type="checkbox" name="isPublic" [(ngModel)]="isPublic">
-        {{isPublic}}
-        <br/>
-        <br/>
-        <input type="submit" class="btn btn-primary" value="Submit">
-        </div>
-       
-        <br/>
+        
+        <a *ngIf= "authService.loggedIn()">
+            <p>Title: </p>
+            <input type = "text" [(ngModel)]="collectionTitle"  name= "collectionTitle" placeholder="Title" class = "form-control">
+            <br/>
+            <p>Description: </p>
+            <input type = "text" [(ngModel)]="collectionDescrip" name = "collectionDescrip" placeholder="Description" class = "form-control">
+            <br/>
+            <p>Click the checkbox to make your collection public</p>
+            <input type="checkbox" name="isPublic" [(ngModel)]="isPublic">
+            {{isPublic}}
+            <br/>
+            <br/>
+            <input type="submit" class="btn btn-primary" value="Submit">
+            
+        </a>
+    </div>
+    <br/>
 </form>
  <button (click) = search() >Search</button>
 <div class = "row">
