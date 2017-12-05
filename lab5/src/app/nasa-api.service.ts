@@ -8,13 +8,15 @@ export class NasaApiService {
     
 result:any;
  list: string[] = [];
-
-private NASAquery = "https://images-api.nasa.gov/search?q="; //search query from nasa api
+ 
+//search query from nasa api
+private NASAquery = "https://images-api.nasa.gov/search?q="; 
   constructor(private _http: Http) { }
 
 getValues(query){
-    //console.log(index);
-    return this._http.get(this.NASAquery + query) //append user query
-    .map((data: any) => data.json());//.collection.items["0"].links["0"].href);
+    
+    //append user query
+    return this._http.get(this.NASAquery + query) 
+    .map((data: any) => data.json());
 }
 }
