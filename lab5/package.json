@@ -33,7 +33,7 @@
     "jsonwebtoken": "^8.1.0",
     "mongodb": "^2.2.33",
     "mongoose": "^4.13.4",
-    "ngx-flash-messages": "^1.0.4",
+    "ngx-flash-messages": "^1.0.4"
     "nodemailer": "^4.4.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",

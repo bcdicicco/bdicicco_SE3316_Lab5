@@ -18,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FlashMessagesModule } from 'ngx-flash-messages';
+import { PoliciesComponent } from './policies/policies.component';
 
 const appRoutes: Routes = [
   { path: '', component: NotLoggedComponent},
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'admin-login', component: AdminLoginComponent},
-  {path: 'admin', component: AdminComponent}
+  {path: 'admin', component: AdminComponent},
+  {path: 'policies', component: PoliciesComponent}
 ]
 
 @NgModule({
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     NavbarComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    PoliciesComponent
   ],
   imports: [
     BrowserModule,
