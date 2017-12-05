@@ -1,3 +1,19 @@
-<p>
-  dashboard works!
-</p>
+<!DOCTYPE html>
+<html>
+<br/>
+ 
+  <li *ngFor = "let photo of photos"> <!-- display photos from database-->
+  <div>
+   <!--<button type="button" onclick="removeFromCollection(photo)" > KMS</button>-->
+   <p>{{collectionNumber}}</p>
+    <a (click) = "removeFromCollection(photo) "><img src = {{photo}} /></a>
+    <br/>
+    
+    </div>
+    
+ </li>
+ 
+
+
+
+</html>

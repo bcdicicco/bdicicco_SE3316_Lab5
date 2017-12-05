@@ -5,7 +5,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const config = require("../config/database");
 const eVer = require("../email-verification");
-
+const Collection = require("../models/collection");
 //Register
 router.post('/register', (req, res) =>{
     let newUser = new User({
@@ -96,7 +96,7 @@ router.post('/re-verification-email', function(req, res) {
         // usertoken: req.body.usertoken
     };
     eVer.reVerifyUser(newUser);
-	res.send({success: true, msg: "Your verification email has been sent"});
+	res.send({success: true, msg: "You're verification email has been sent"});
 });
 
 //Verification
@@ -111,7 +111,7 @@ router.get('/verify/:verificationToken', function(req, res) {
 			} else {
 				res.json({
 					success: true, 
-					message: 'Your account is now verified'
+					message: 'Youre account is now verified'
 				});
 			}
 		});
@@ -121,6 +121,66 @@ router.get('/verify/:verificationToken', function(req, res) {
 //Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}),(req, res) =>{
     res.json({user: req.user});
+});
+
+//------------------------------------------Collection-----------------------------------------------------
+
+router.post('/collection',(req,res,next)=>{
+	console.log(Object.keys(req.body));
+	let newCollection = new Collection({
+		email: req.body.email,
+	  title: req.body.title,
+	  descrip: req.body.descrip,
+	  isPublic: req.body.isPublic,
+	  imageList: req.body.imageList
+	});
+    
+		
+		console.log('New collection from user with email '+newCollection.email);
+			Collection.addCollection(newCollection, (err, user)=>{
+				if(err){
+					res.json({
+						success: false,
+						message: 'Failed to create collection'
+					});
+				}
+				else{
+					res.json({
+						success: true,
+						message: 'Collection successfully created'
+					});
+				}
+			});
+
+});
+
+//Get a users collection 
+router.get('/collections/usercollections/:email', passport.authenticate('jwt', {session:false}),(req,res,next)=>{
+	let newCollection = new User({
+		email: req.params.email,
+	});
+	console.log('1');
+	// console.log(Collection.getCollectionByEmail(newCollection.email));
+		console.log('2');
+
+	Collection.getCollectionByEmail(newCollection.email, (error, cn)=>{
+		if(error){
+			console.log("erooooooooooooooooooooooooooooooooooooooooooooooooooooooooooor");
+			throw error;
+		} 
+
+		// console.log('looking for collections from '+newCollection.email);
+		// // email not found
+		if(cn){
+			res.json({collection: cn});
+		} else {
+			res.json({
+				success: false
+			});
+		}
+
+    
+});
 });
 
 module.exports = router;

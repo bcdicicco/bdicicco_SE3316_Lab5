@@ -18,4 +18,12 @@ export class ValidateService {
     return re.test(email);
   }
 
+  validateCollection(collection){ //collections should have a title
+        if( collection.title==undefined) {
+          return false;
+          } 
+          else {
+              return true;
+        }
+    }
 }

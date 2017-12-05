@@ -1,3 +1,29 @@
-<p>
-  profile works!
-</p>
+<form (submit)="onCollectionSubmit()">
+    <div class="form-control">
+        <input type="text" [(ngModel)]="searchPhoto" name= "searchPhoto" class = "form-control" placeholder = "Search">
+        <br/>
+        <p>Title: </p>
+        <input type = "text" [(ngModel)]="collectionTitle"  name= "collectionTitle" placeholder="Title" class = "form-control">
+        <br/>
+        <p>Description: </p>
+        <input type = "text" [(ngModel)]="collectionDescrip" name = "collectionDescrip" placeholder="Description" class = "form-control">
+        <br/>
+        <p>Click the checkbox to make your collection public</p>
+        <input type="checkbox" name="isPublic" [(ngModel)]="isPublic">
+        {{isPublic}}
+        <br/>
+        <br/>
+        <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+       
+        <br/>
+</form>
+ <button (click) = search() >Search</button>
+<div class = "row">
+<ul>
+<li *ngFor = "let photo of photos" class = image-container>
+<a (click) = "addToCollection(photo) "><img src = "{{photo.links[0]['href']}}"></a>
+<p>{{photo.data[0]['title']}}</p>
+</li>
+</ul>
+</div>

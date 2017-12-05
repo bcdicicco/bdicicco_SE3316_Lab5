@@ -3,6 +3,7 @@ import {Http, Headers} from '@angular/http';
 import "rxjs/add/operator/map";
 import { FlashMessagesService } from 'ngx-flash-messages';
 import {Router} from '@angular/router';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
@@ -21,8 +22,6 @@ export class AuthService {
         
         return this.http.post('https://lab05-bdicicco.c9users.io:8081/users/register', user, {headers: headers})
             .map(res => res.json());
-        // return req;
-    
     }
     
     authenticateUser(user){
@@ -72,4 +71,11 @@ export class AuthService {
         this.authToken = token;
     }
     
+    loggedIn(){
+      return tokenNotExpired('id_token');
+  }
+  
+   returnEmail(){
+    return (localStorage.getItem("user"));
+  }
 }
