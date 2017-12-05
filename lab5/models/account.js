@@ -69,13 +69,13 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 var transport = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        // xoauth2: xoauth2.createXOAuth2Generator({
+        
             type: 'OAuth2',
             user: 'namikazeburst@gmail.com',
             clientId: '76227631437-93j8pbsfgfmn47er8jnm1qrcrs4k6og0.apps.googleusercontent.com ',
             clientSecret: 'rbq0cTwwwYlx6XDdyBIN3-Og',
             refreshToken: '1/Y8ifWe4Y9oKLwWoW_Yfu3mswSjW_dUkUlEZA_LRVbbc'
-        // }) 
+      
     }
 });
 
@@ -100,50 +100,3 @@ module.exports.sendEmail = function(user, verificationTokenData){
     }); 
 }
 
-//---------------------------------------------------------------------------------------------------
-// module.exports.sendAndVerify = function(user){
-   
-// 	// create verification token
-//     var newToken = new Token({
-// 	    created: new Date(),
-// 		expires: new Date(Date.now() + (1000 /*milisec*/ * 60 /*sec*/ * 60 /*min*/ * 24 /*hr*/ * 30 /*days*/)),
-// 		data: uuid(),
-// 		category: 'EmailVerification',
-// 		recipientId: user.email,
-//     });
-	    
-// 	newToken.save({ validateBeforeSave: true }, function(err, verificationToken) {
-// 		if (err) { return console.log(err); }
-// 		// send email
-// 		var verificationUrl = "http://" + global.__environmentDomainName + "/verify/" + verificationToken.data;
-// 		var emailBody = '<p>Hey, <br/>Verify your email by clicking the following link: <a href="' + verificationUrl + '" target="_blank"> Click me</a></p>';
-
-// 		if (!User.sendEmail(user, verificationToken, emailBody)) {
-// 		    return false;
-// 		} 
-// 	});
-
-// var confirmToken = function(tokenData, callback) {
-// 	    Token.findOne({data: tokenData}).exec(function(err, tok) {
-// 		if (err) {
-// 			return callback(err);
-// 		}
-// 		if (tok) {
-// 			if (new Date() < new Date(tok.expires)) {
-// 				User.getUserByEmail(tok.recipientId).exec(function(err, user) {
-// 					if (err || !user) {
-// 						return callback(new Error('User does not exist'));
-// 					};
-// 					user.email.isVerified = true;
-// 					user.save({validateBeforeSave: true}, callback);
-// 				});
-// 			} else {
-// 				callback(new Error('Token expired.'));
-// 			};
-// 			Token.findByIdAndRemove(tok._id, function() {});
-// 		} else {
-// 			callback(new Error('Token does not exist.'));
-// 		};
-// 	});
-// };
-// }
