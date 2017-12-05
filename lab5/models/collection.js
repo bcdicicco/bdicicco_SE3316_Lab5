@@ -15,7 +15,7 @@ const CollectionSchema = mongoose.Schema({
 const Collection = module.exports = mongoose.model('Collection', CollectionSchema);
 
 module.exports.getCollectionByEmail = function(email, callback){
-     //console.log(email);
+   
     const query = {email: email};
     Collection.find(query, callback);
 };
